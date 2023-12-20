@@ -48,8 +48,13 @@ const InvestmentList: React.FC<any> = ({ code, dollarRate }) => {
         setInvestData(investData);
     }
 
+    const getNumber = (numb: any) => {
+        const newNumb = Number(numb);
+        return isNaN(newNumb) ? 0 : newNumb;
+    }
+
     const totalAmount = useMemo(() =>
-                                    Math.round(investData.map((item: any) => item.Amount || 0)
+                                    Math.round(investData.map((item: any) => getNumber(item.Amount) || 0)
                                                    .reduce((current: number, newSum: number) =>
                                                                current + newSum, 0)), [investData]);
 
